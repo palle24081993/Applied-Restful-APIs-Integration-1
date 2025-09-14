@@ -1,0 +1,71 @@
+// Step 1: Create the MongoDB collection 
+
+db.csk_players.insertMany([
+  {
+    player_id: 1,
+    name: "MS Dhoni",
+    role: "Wicket-Keeper Batsman",
+    nationality: "India",
+    matches: 9500,
+    runs: 20000,
+    wickets: 0
+  },
+  {
+    player_id: 2,
+    name: "Ruturaj Gaikwad",
+    role: "Batsman",
+    nationality: "India",
+    matches: 56,
+    runs: 1900,
+    wickets: 0
+  },
+  {
+    player_id: 3,
+    name: "Ravindra Jadeja",
+    role: "All-Rounder",
+    nationality: "India",
+    matches: 200,
+    runs: 2500,
+    wickets: 130
+  },
+  {
+    player_id: 4,
+    name: "Moeen Ali",
+    role: "All-Rounder",
+    nationality: "England",
+    matches: 59,
+    runs: 690,
+    wickets: 15
+  },
+  {
+    player_id: 5,
+    name: "Deepak Chahar",
+    role: "Bowler",
+    nationality: "India",
+    matches: 85,
+    runs: 140,
+    wickets: 90
+  }
+])
+
+// Step 2: 5 SQL queries
+
+// 1. Find all the batmans
+
+db.csk_players.find({ role: "Batsman" })
+
+// 2. Find players with more than 100 wickets
+
+db.csk_players.find({ wickets: { $gt: 100 } })
+
+// 3. Find only Indian players
+
+db.csk_players.find({ nationality: "India" })
+
+// 4. Find who are all-rounders and run more than 1000
+
+db.csk_players.find({ role: "All-Rounder", runs: { $gt: 1000 } })
+
+// 5. Find the player with the highest runs
+
+db.csk_players.find().sort({ runs: -1 }).limit(1)
